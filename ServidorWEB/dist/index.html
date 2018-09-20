@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Olá, seja bem-vindo ao Cadastro de Pessoas</h1>
+
+    <p>Informe os dados abaixo:</p>
+
+    <form>
+        Nome:
+        <br>
+        <input type="text" id="nome" name="nome">
+        <br> Idade:
+        <br>
+        <input type="text" id="idade" name="idade">
+        <br> Gênero:
+        <br>
+        <input type="text" id="genero" name="genero">
+        <br> CPF:
+        <br>
+        <input type="text" id="cpf" name="cpf">
+        <br> Altura:
+        <br>
+        <input type="text" id="altura" name="altura">
+        <br>
+    </form>
+
+    <button onclick="create()">Salvar</button>
+</body>
+
+<script>
+    const create = function () {
+        var nome = document.getElementById("nome").value;
+        var idade = document.getElementById("idade").value;
+        var altura = document.getElementById("altura").value;
+        var cpf = document.getElementById("cpf").value;
+        var genero = document.getElementById("genero").value;
+
+        var pessoa = { nome, idade, cpf, altura, genero }
+
+        axios.post('/create', pessoa)
+            .then(function (response) {
+                console.log(response);
+                alert('Mah oew');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>
