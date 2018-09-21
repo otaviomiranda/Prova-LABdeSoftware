@@ -1,0 +1,2 @@
+{"nome":"Oto","idade":"20","cpf":"12344566789","altura":"185","genero":"M"}
+{"nome":"Aline","idade":"12","cpf":"26500099988","altura":"155","genero":"F"}

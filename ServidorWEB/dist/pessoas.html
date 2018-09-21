@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Pessoas</h1>
+    <div id='table'></div>
+    <button onclick="cadastrar()">CADASTRAR NOVA PESSOA</button>
+</body>
+<script>
+    window.onload = () => {
+        read();
+    };
+
+    function cadastrar(){
+        window.location.href = "./";
+
+    }
+
+    function read() {
+        axios.post('/getAll')
+            .then(function (response) {
+                console.log(response);
+                let tabela = `
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Altura</th>
+                        <th>Genero</th>
+                        <th>CPF</th>
+                    </tr>
+                `;
+
+                for (i = 0; i < response.data.length - 1; i++) {
+                    let pessoa = JSON.parse(response.data[i]);
+                    tabela += `
+                        <tr>
+                            <td>${pessoa.nome}</td>
+                            <td>${pessoa.idade}</td>
+                            <td>${pessoa.altura}</td>
+                            <td>${pessoa.genero}</td>
+                            <td>${pessoa.cpf}</td>
+                        </tr>
+                    `;
+
+                }
+                tabela += '</table>';
+
+                document.getElementById('table').innerHTML = tabela;
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>
